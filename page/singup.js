@@ -45,24 +45,51 @@ export default class signup extends React.Component {
                 
                 <Fumi style={styles.inputs}
                    label={'Phone No :'}
-                  iconClass={FontAwesomeIcon}
+                   iconClass={FontAwesomeIcon}
                    iconName={'phone'}
                    iconColor={'#f95a25'}
-                 iconSize={20}
-                 iconWidth={20}
-                 inputPadding={16}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
                  />  
         </View>
         <View style={styles. inputContainer} >
                 
                 <Fumi style={styles.inputs}
                    label={'Re. number :'}
-                  iconClass={FontAwesomeIcon}
+                   iconClass={FontAwesomeIcon}
                    iconName={''}
                    iconColor={'#f95a25'}
-                 iconSize={20}
-                 iconWidth={20}
-                 inputPadding={16}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
+                 />  
+        </View>
+
+        <View style={styles. inputContainer} >
+                
+                <Fumi style={styles.inputs}
+                   label={'Password:'}
+                   secureTextEntry={true}
+                   iconClass={FontAwesomeIcon}
+                   iconName={''}
+                   iconColor={'#f95a25'}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
+                 />  
+        </View>
+        <View style={styles. inputContainer} >
+                
+                <Fumi style={styles.inputs}
+                   label={'Re-Password:'}
+                   secureTextEntry={true}
+                   iconClass={FontAwesomeIcon}
+                   iconName={'Password'}
+                   iconColor={'#f95a25'}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
                  />  
         </View>
 

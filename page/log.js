@@ -1,7 +1,8 @@
 
 import React,{Component} from 'react';
 import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,Image,Appbar} from 'react-native';
-
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
 export default class log extends React.Component {
   state={
     name:"",
@@ -17,26 +18,34 @@ export default class log extends React.Component {
       <ImageBackground source={image} style={styles.image}>
      
      
-
-
-               <View style={styles. inputContainer} >
-                   <TextInput  
-                    style={styles.inputs}
-                        placeholder="User name" 
-                        underlineColorAndroid='transparent'
-                        onChangeText={text => this.setState({email:text})}
-                    />
-                     <Image style={styles.inputIcon} source={{uri: 'https://img.icons8.com/color/40/000000/user.png'}}/>   
-               </View>
-               < View style={styles.inputContainer1}>
-          <TextInput style={styles.inputs}
-              placeholder="Password"
-              secureTextEntry={true}
-              underlineColorAndroid='transparent'
-              onChangeText={(password) => this.setState({password})}/>
-          <Image style={styles.inputIcon} source={{uri: 'https://img.icons8.com/color/40/000000/password.png'}}/>
+     <View style={styles. inputContainer} >
+                
+                <Fumi style={styles.inputs}
+                   label={'User name:'}
+                   iconClass={FontAwesomeIcon}
+                   iconName={'user'}
+                   iconColor={'#f95a25'}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
+                 />  
         </View>
-            
+
+        <View style={styles. inputContainer} >
+                
+                <Fumi style={styles.inputs}
+                   label={'Password:'}
+                   secureTextEntry={true}
+                   iconClass={FontAwesomeIcon}
+                   iconName={'phone'}
+                   iconColor={'#f95a25'}
+                   iconSize={20}
+                   iconWidth={20}
+                   inputPadding={16}
+                 />  
+        </View>
+           
+        
 
               <Button 
                        title="    Login    "
@@ -77,56 +86,34 @@ const styles = StyleSheet.create({
     fontSize:15,
     paddingBottom:10.0,
   },
+ 
   inputContainer: {
     borderBottomColor: '#F5FCFF',
     backgroundColor: '#FFFFFF',
-    borderRadius:30,
     borderBottomWidth: 1,
     width:300,
-    height:45,
-    marginTop:250,
     marginBottom:10,
     flexDirection: 'row',
-    alignItems:'center',
-
     shadowColor: "#808080",
+    
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  inputContainer1: {
-    borderBottomColor: '#F5FCFF',
-    backgroundColor: '#FFFFFF',
-    borderRadius:30,
-    borderBottomWidth: 1,
-    width:300,
-    height:45,
-
-    marginBottom:10,
-    flexDirection: 'row',
-    alignItems:'center',
-
-    shadowColor: "#808080",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
     elevation: 5,
   },
   inputs:{
-    height:45,
-    marginLeft:16,
+    height:50,
+    width:300,
+    marginLeft:10,
     borderBottomColor: '#FFFFFF',
     flex:1,
+  
+
   },
+
   loginBtn:{
     width:"50%",
     backgroundColor:"#00ff00",

@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom:10,
     flexDirection: 'row',
     shadowColor: "#808080",
-    
+    width:300,
     shadowOffset: {
       width: 0,
       height: 2,

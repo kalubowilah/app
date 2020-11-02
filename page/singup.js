@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground,Image,ScrollView,TextField,Reinput } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
+import RNPickerSelect from 'react-native-picker-select';
 export default class signup extends React.Component {
 
   render(){
@@ -14,6 +15,18 @@ export default class signup extends React.Component {
       
        <View style={styles.container}>
               
+
+              <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label: 'Football', value: 'football' },
+                { label: 'Baseball', value: 'baseball' },
+                { label: 'Hockey', value: 'hockey' },
+            ]}
+        />
+
+
+
                <View style={styles. inputContainer} >
                 
                        <Fumi style={styles.inputs}

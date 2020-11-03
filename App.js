@@ -13,7 +13,7 @@ const App = createStackNavigator({
   //Constant which holds all the screens like index of any d
     FirstPag: { screen: FirstPage }, 
     //First entry by default be our first screen if we do not define initialRouteName
-    SecondPage: { screen: SecondPage }, 
+    Registration : { screen: SecondPage }, 
   },
  // {
    // initialRouteName: 'FirstPag',

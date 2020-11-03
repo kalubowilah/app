@@ -1,115 +1,116 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground,Image,ScrollView,TextField,Reinput } from 'react-native';
+import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Fumi } from 'react-native-textinput-effects';
-import RNPickerSelect from 'react-native-picker-select';
 export default class signup extends React.Component {
 
   render(){
     const { navigate } = this.props.navigation;
     state = {
       language: 'java',
+
     };
+    this.state = {
+      country: 'uk'
+  }
 
     return (
-      
+      <SafeAreaView>
+      <ScrollView>
        <View style={styles.container}>
-              
+       <Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
+       <Text style={styles.inputTexttopic1}>- Kalubowila -</Text> 
+              <Text style={styles.inputText}>Enter your name :</Text> 
+                <View style={styles. inputs} >
+                               <TextInput  
+                                     style={styles.inputText1}
+                                        placeholder="eg- Sadun Tharaka." 
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
 
-              <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
-            items={[
-                { label: 'Football', value: 'football' },
-                { label: 'Baseball', value: 'baseball' },
-                { label: 'Hockey', value: 'hockey' },
-            ]}
-        />
+                 <Text style={styles.inputText}>Your registration number :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="XXXX" 
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
 
+                 <Text style={styles.inputText}>NIC number :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="XXXXXXXXXXV" 
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
 
+                 <Text style={styles.inputText}>Enter your phone No: :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="eg- +94*********" 
+                                        keyboardType = 'numeric'
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
 
-               <View style={styles. inputContainer} >
-                
-                       <Fumi style={styles.inputs}
-                          label={'Dr. Name'}
-                          iconClass={FontAwesomeIcon}
-                          iconName={'user'}
-                          iconColor={'#f95a25'}
-                          iconSize={20}
-                          iconWidth={20}
-                          inputPadding={16}
-                        />  
-                </View>
+                 <Text style={styles.inputText}>Email address: :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="" 
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
 
-               <View style={styles. inputContainer} >
-                
-                <Fumi style={styles.inputs}
-                       label={'Address'}
-                       iconClass={FontAwesomeIcon}
-                       iconName={'home'}
-                       iconColor={'#f95a25'}
-                       iconSize={20}
-                       iconWidth={20}
-                       inputPadding={16}
-                 />  
-              </View>
-
+                 <Text style={styles.inputText}>Password :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="Must have at least 8 chatacters." 
+                                        secureTextEntry={true}
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
         
-        <View style={styles. inputContainer} >
-                
-                <Fumi style={styles.inputs}
-                   label={'Phone No :'}
-                   iconClass={FontAwesomeIcon}
-                   iconName={'phone'}
-                   iconColor={'#f95a25'}
-                   iconSize={20}
-                   iconWidth={20}
-                   inputPadding={16}
-                 />  
-        </View>
-        <View style={styles. inputContainer} >
-                
-                <Fumi style={styles.inputs}
-                   label={'Re. number :'}
-                   iconClass={FontAwesomeIcon}
-                   iconName={''}
-                   iconColor={'#f95a25'}
-                   iconSize={20}
-                   iconWidth={20}
-                   inputPadding={16}
-                 />  
-        </View>
-
-        <View style={styles. inputContainer} >
-                
-                <Fumi style={styles.inputs}
-                   label={'Password:'}
-                   secureTextEntry={true}
-                   iconClass={FontAwesomeIcon}
-                   iconName={''}
-                   iconColor={'#f95a25'}
-                   iconSize={20}
-                   iconWidth={20}
-                   inputPadding={16}
-                 />  
-        </View>
-        <View style={styles. inputContainer} >
-                
-                <Fumi style={styles.inputs}
-                   label={'Re-Password:'}
-                   secureTextEntry={true}
-                   iconClass={FontAwesomeIcon}
-                   iconName={'Password'}
-                   iconColor={'#f95a25'}
-                   iconSize={20}
-                   iconWidth={20}
-                   inputPadding={16}
-                 />  
-        </View>
-
+                 <Text style={styles.inputText}>Re-enter password :</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="" 
+                                        secureTextEntry={true}
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                 </View>
+              
+                 <View style={styles.buttons}>
+                       <Button
+                        title="Left button"
+                         onPress={() => Alert.alert('Left button pressed')}
+                         color="#00ff00"
+                         
+                      />
+                   </View>
        </View>
 
-                       
-       
+       </ScrollView>              
+       </SafeAreaView>
     );
   }
 }
@@ -117,34 +118,57 @@ export default class signup extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DCDCDC',
-    alignItems: 'center',
+    backgroundColor: 'white',
     justifyContent: 'center',
-  },
-  inputContainer: {
-    borderBottomColor: '#F5FCFF',
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    marginBottom:10,
-    flexDirection: 'row',
-    shadowColor: "#808080",
-    width:300,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    
   },
   inputs:{
-    height:50,
-    width:300,
-    marginLeft:10,
-    borderBottomColor: '#FFFFFF',
-    flex:1,
+    borderBottomWidth: 1,
+    borderColor:'#777',
   
+    
+    width:300,
+    marginLeft:20,
+    marginBottom:20,
+    fontWeight: "bold",
+    
 
   },
+  inputText:{
+    fontWeight: "bold",
+    color:"black",
+    fontSize: 19,
+    marginLeft:20,
+  },
+  inputText1:{
+    fontWeight: "bold",
+    color:"green",
+    fontSize: 16,
+    
+  },
+buttons:{
 
+  alignContent:"center",
+   marginLeft:20,
+   marginRight:20,
+   height: 40,
+},
+inputTexttopic:{
+  fontWeight: "bold",
+  color:"black",
+  fontSize: 22,
+  marginTop:25,
+  
+ textAlign:"center",
+},
+inputTexttopic1:{
+  fontWeight: "bold",
+  color:"black",
+  fontSize: 22,
+ 
+  marginBottom:30,
+ textAlign:"center",
+
+
+},
 });

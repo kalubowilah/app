@@ -101,12 +101,21 @@ export default class signup extends React.Component {
               
                  <View style={styles.buttons}>
                        <Button
-                        title="Left button"
+                        title="Submit"
                          onPress={() => Alert.alert('Left button pressed')}
-                         color="#00ff00"
+                         color="#32a882" S
                          
                       />
                    </View>
+
+                   <View style={styles.buttonsback}>
+               <Button 
+                       onPress={() =>navigate('Welcome')}
+                       title="Back"
+                       color="#32a882" 
+                       
+              />
+              </View >
        </View>
 
        </ScrollView>              
@@ -125,8 +134,6 @@ const styles = StyleSheet.create({
   inputs:{
     borderBottomWidth: 1,
     borderColor:'#777',
-  
-    
     width:300,
     marginLeft:20,
     marginBottom:20,
@@ -152,6 +159,18 @@ buttons:{
    marginLeft:20,
    marginRight:20,
    height: 40,
+   marginTop:40,
+},
+
+buttonsback:{
+
+  alignContent:"center",
+ marginLeft:20,
+ marginRight:20,
+ height: 40,
+ marginTop:10,
+ marginBottom:50,
+ 
 },
 inputTexttopic:{
   fontWeight: "bold",
@@ -166,7 +185,7 @@ inputTexttopic1:{
   color:"black",
   fontSize: 22,
  
-  marginBottom:30,
+  marginBottom:40,
  textAlign:"center",
 
 

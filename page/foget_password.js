@@ -1,9 +1,10 @@
-
 import React,{Component} from 'react';
 import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,Image,Appbar} from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
-export default class log extends React.Component {
+
+
+export default class foret_password extends React.Component {
   state={
     name:"",
     password:""
@@ -18,8 +19,7 @@ export default class log extends React.Component {
        <Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
        <Text style={styles.inputTexttopic1}>- Kalubowila -</Text> 
        
-       <Text style={styles.inputTexttopic2}>WOC</Text> 
-       <Text style={styles.inputTexttopic3}>-නම දාන්න ඔනේ-</Text> 
+    
 
 
 
@@ -34,11 +34,21 @@ export default class log extends React.Component {
                         
                           </View>
 
-                         <Text style={styles.inputText}>Password :</Text>
+                         <Text style={styles.inputText}>Email adress:</Text>
                          <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="password" 
+                                        placeholder="email" 
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                              />
+                        
+                         </View>
+                         <Text style={styles.inputText}>Phone number:</Text>
+                         <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="phone number" 
                                         secureTextEntry={true}
                                         placeholderTextColor="#DCDCDC"
                                         onChangeText={text => this.setState({password:text})}
@@ -48,22 +58,16 @@ export default class log extends React.Component {
 
                          <View style={styles.buttons}>
                                                 <Button 
-                                                title="Login"
+                                                title="send"
                                                 color="#32a882" 
                                                 />
                         </View>
 
-               <TouchableOpacity>
-                    <Text style={styles.forgot1}
-                    onPress={() =>navigate('Forgot')} 
-                    >Forgot Password?
-                         </Text>
-               </TouchableOpacity>
               
-               <View style={styles.buttons}>
+               <View style={styles.buttonsback}>
                <Button 
-                       onPress={() =>navigate('Registration')}
-                       title="Signup"
+                       onPress={() =>navigate('Welcome')}
+                       title="Back"
                        color="#32a882" 
                        
               />
@@ -88,12 +92,7 @@ const styles = StyleSheet.create({
     fontSize:15,
     paddingBottom:10.0,
   },
-  
-  forgot:{
-    color:"white",
-    fontSize:11,
-    paddingBottom:10.0,
-  },
+ 
   inputText:{
     fontWeight: "bold",
     color:"black",
@@ -120,6 +119,17 @@ const styles = StyleSheet.create({
    marginLeft:20,
    marginRight:20,
    height: 40,
+   marginTop:40,
+   
+  },
+  buttonsback:{
+
+    alignContent:"center",
+   marginLeft:20,
+   marginRight:20,
+   height: 40,
+   marginTop:10,
+   
   },
   inputTexttopic:{
     fontWeight: "bold",
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
     color:"black",
     fontSize: 22,
    
-    marginBottom:40,
+    marginBottom:60,
    textAlign:"center",
   },
   forgot1:{
@@ -144,19 +154,6 @@ const styles = StyleSheet.create({
    marginBottom:15,
    marginTop:15,
   },
-  inputTexttopic2:{
-    fontWeight: "bold",
-    color:"black",
-    fontSize: 40,
 
-   textAlign:"center",
-  },
-  inputTexttopic3:{
-    fontWeight: "bold",
-    color:"black",
-    fontSize: 15,
-    marginBottom:60,
-   textAlign:"center",
-  },
   
 });

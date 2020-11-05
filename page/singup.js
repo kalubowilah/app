@@ -1,6 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+import DropDownPicker from 'react-native-dropdown-picker';
+
+
+
 export default class signup extends React.Component {
 
   render(){
@@ -9,16 +14,51 @@ export default class signup extends React.Component {
       language: 'java',
 
     };
+
+ 
     this.state = {
-      country: 'uk'
+      role: 'Director'
   }
 
     return (
       <SafeAreaView>
       <ScrollView>
        <View style={styles.container}>
+
+         
        <Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
        <Text style={styles.inputTexttopic1}>- Kalubowila -</Text> 
+
+       
+       <Text style={styles.inputText}>Select your position:</Text>
+       <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[ 
+                            {label: 'Director', value: 'Director',  hidden: true},
+                            {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
+                            {label: 'Ward doctors', value: 'Ward doctors'},
+                            {label: 'ward consultant.', value: 'ward consultant.'},
+                    ]}
+                       defaultValue={this.state.role}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item => this.setState({
+                          country: item.value
+                    })}
+                     >
+             </DropDownPicker>
+             </View>
+
+
+
+
+
+
               <Text style={styles.inputText}>Enter your name :</Text> 
                 <View style={styles. inputs} >
                                <TextInput  
@@ -134,7 +174,7 @@ const styles = StyleSheet.create({
   inputs:{
     borderBottomWidth: 1,
     borderColor:'#777',
-    width:300,
+   marginRight:20,
     marginLeft:20,
     marginBottom:20,
     fontWeight: "bold",
@@ -144,7 +184,7 @@ const styles = StyleSheet.create({
   inputText:{
     fontWeight: "bold",
     color:"black",
-    fontSize: 19,
+    fontSize: 17,
     marginLeft:20,
   },
   inputText1:{
@@ -190,4 +230,12 @@ inputTexttopic1:{
 
 
 },
+picker1:{
+  alignContent:"center",
+  marginLeft:20,
+  marginRight:20,
+  height: 40,
+  marginBottom:10,
+  marginTop:5,
+}
 });

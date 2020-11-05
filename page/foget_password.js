@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,Image,Appbar} from 'react-native';
+import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,ScrollView} from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
 
@@ -9,19 +9,22 @@ export default class foret_password extends React.Component {
     name:"",
     password:""
   }
+
+ 
+ 
   render(){
     const { navigate } = this.props.navigation;
+
     
     return (
-  
+  <ScrollView>
       <View style={styles.container}>
 
        <Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
        <Text style={styles.inputTexttopic1}>- Kalubowila -</Text> 
        
     
-
-
+      
 
                        <Text style={styles.inputText}>Enter user name :</Text>
                           <View style={styles. inputs} >
@@ -74,7 +77,7 @@ export default class foret_password extends React.Component {
               </View >
              
       </View >
-       
+      </ScrollView>
     );
   }
 }

@@ -77,6 +77,7 @@ export default class log extends React.Component {
                                                 <Button 
                                                 title="Login"
                                                 color="#32a882" 
+                                                onPress={() =>navigate('addpatien')} 
                                                 />
                         </View>
 

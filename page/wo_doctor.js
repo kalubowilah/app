@@ -1,10 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button } from 'react-native';
+import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button,ToastAndroid } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import CalendarPicker from 'react-native-calendar-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
+
+  // redio button allergies 
+  var allergies = [
+  {label: "Allergies occur.", value: "Allergies occur."},
+   {label: "Does not cause allergies.", value: "Does not cause allergies."},
+   
+  ];
 
 export default class wo_docter extends React.Component {
 
@@ -14,14 +20,7 @@ export default class wo_docter extends React.Component {
       //default value of the date time
       date: '',
     };
-    
-    this.state2 = {
-      selectedStartDate: null,
-    };
-    this.onDateChange = this.onDateChange.bind(this);
   
-
-
 
   }
   componentDidMount() {
@@ -43,22 +42,24 @@ export default class wo_docter extends React.Component {
     });
   }
 
-  onDateChange(date1) {
-    this.setState({
-      selectedStartDate: date1,
-    });
-  }
+  
 
   render(){
     const { navigate } = this.props.navigation;
-//picker (operation theatri)
-    this.state1 = {
-      opt: 'Theatre'
+//picker (Allergies)
+    this.state2 = {
+      allergies: 'Allergies'
   }
-    
 
-  const { selectedStartDate } = this.state2;
-  const startDate = selectedStartDate ? selectedStartDate.toString() :"";
+  //picker (operation theatri)
+  this.state1 = {
+    opt: 'Theatre'
+}
+ //picker (operation theatri)
+ this.state3 = {
+  Sex: 'Male'
+}
+    
     return (
       <SafeAreaView>
       <ScrollView>
@@ -98,7 +99,6 @@ export default class wo_docter extends React.Component {
 
 
 
-
                  
 
                  <Text style={styles.inputText}>Time</Text>
@@ -121,7 +121,7 @@ export default class wo_docter extends React.Component {
                                <TextInput  
                                         style={styles.inputText1}
                                         placeholder="sadun" 
-                                        keyboardType = 'numeric'
+                                       // keyboardType = 'numeric'
                                         placeholderTextColor="#DCDCDC"
                                      //   onChangeText={text => this.setState({password:text})}
                               />
@@ -133,7 +133,6 @@ export default class wo_docter extends React.Component {
                                <TextInput  
                                         style={styles.inputText1}
                                         placeholder="18" 
-                                        secureTextEntry={true}
                                         placeholderTextColor="#DCDCDC"
                                       //  onChangeText={text => this.setState({password:text})}
                               />
@@ -146,33 +145,56 @@ export default class wo_docter extends React.Component {
                                         style={styles.inputText1}
                                         placeholderTextColor="#DCDCDC"
                                       //  onChangeText={text => this.setState({password:text})}
+                                      multiline={true}
                               />
                         
                  </View>
       
                  <Text style={styles.inputText}>Sex (male / female)</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder=" add redio button hmmmmmm" 
-                                       
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
+                 <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[ 
+                            {label: 'Male', value: 'Male',  hidden: true},
+                            {label: 'Female', value: 'Female' },
+                          
+                    ]}
+                       defaultValue={this.state. Sex}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item => this.setState({
+                          country: item.value
+                    })}
+                     >
+             </DropDownPicker>
+             </View>
 
-                 <Text style={styles.inputText}>Allergies (have / no)</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder=" add redio button hmmmmmm" 
-                                      
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
+                 <Text style={styles.inputText}>Allergies </Text>
+                 <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[ 
+                            {label: 'Allergies', value: 'Allergies',  hidden: true},
+                            {label: 'Does not cause allergies', value: 'Does not cause allergies' },
+                          
+                    ]}
+                       defaultValue={this.state. allergies}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item => this.setState({
+                          country: item.value
+                    })}
+                     >
+             </DropDownPicker>
+             </View>
 
 
                  <Text style={styles.Subtopic}> Admisson information </Text> 
@@ -245,37 +267,42 @@ export default class wo_docter extends React.Component {
                                        
                                         placeholderTextColor="#DCDCDC"
                                         onChangeText={text => this.setState({password:text})}
+                                        
+                              />
+                        
+                 </View>
+
+                 <Text style={styles.inputText}>Operation date (D/M/Y):</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholder="eg - 03/10/2020" 
+                                       
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                                        
                               />
                         
                  </View>
 
 
-                 <CalendarPicker
-          onDateChange={this.onDateChange}
-        />
- 
-        <View>
-          <Text>SELECTED DATE:{ startDate }</Text>
-        </View>
 
-
-  <View style={styles. inputsview} >
-                               <Text 
+                 <Text style={styles.inputText}>Note:</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
                                         style={styles.inputText1}
-                                       
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              >{this.state2.startDate}</Text>
+                                      //  onChangeText={text => this.setState({password:text})}
+                                      multiline={true}
+                              />
                         
                  </View>
-
-
 
                  <View style={styles.buttons}>
                        <Button
                         title="Submit"
                          onPress={() => Alert.alert('Left button pressed')}
-                         color="#32a882" S
+                         color="#32a882" 
                          
                       />
                    </View>
@@ -387,5 +414,13 @@ inputsview:{
   marginBottom:15,
   fontWeight: "bold",
 },
-
+redio1:{
+  
+  
+    borderColor:'#777',
+   marginRight:40,
+    marginLeft:40,
+    marginBottom:20,
+    fontWeight: "bold",
+},
 });

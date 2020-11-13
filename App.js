@@ -26,7 +26,7 @@ const App = createStackNavigator({
     addpatien: { screen: FourthPage }, 
     Director: { screen: FifthPage },
     Nursing: { screen: SixthPage },
-    Anesthesiologist_Doctor: { screen: SixthPage },
+    Anesthesiologist_Doctor: { screen: SeventhPage },
 
   },
  // {

@@ -4,7 +4,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export default class Nursing extends React.Component {
+export default class Director extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
@@ -14,8 +14,10 @@ export default class Nursing extends React.Component {
         <ScrollView>
           <View style={styles.container}>
 
+
             <Text style={styles.inputTexttopic}>Admisson of patients</Text>
             <Text style={styles.inputTexttopic1}>- Kalubowila -</Text>
+
 
             <Text style={styles.Subtopic}>Admisson information </Text>
 
@@ -27,7 +29,7 @@ export default class Nursing extends React.Component {
                 onChangeText={text => this.setState({ password: text })}/>
             </View>
 
-            <Text style={styles.inputText}>Enter Date :</Text>
+            <Text style={styles.inputText}>Entered Date :</Text>
             <View style={styles.inputsview} >
               <Text
                 style={styles.inputText1}
@@ -36,7 +38,7 @@ export default class Nursing extends React.Component {
               />
             </View>
 
-            <Text style={styles.inputText}>Enter Time :</Text>
+            <Text style={styles.inputText}>Entered Time :</Text>
             <View style={styles.inputsview} >
               <Text
                 style={styles.inputText1}
@@ -44,44 +46,7 @@ export default class Nursing extends React.Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </View>
-
-            <Text style={styles.Subtopic}>Permission to Surgery </Text>
-
-            <Text style={styles.inputText}>01. Director :</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-              />
-            </View>
-
-            <Text style={styles.inputText}>02. Ward doctor:</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
-            <Text style={styles.inputText}>03. Anesthesiologist doctor :</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
-            <Text style={styles.inputText}>04. Surgery doctor :</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
+            
 
             <Text style={styles.Subtopic}>Patients information </Text>
 
@@ -103,7 +68,7 @@ export default class Nursing extends React.Component {
               />
             </View>
 
-            <Text style={styles.inputText}>Patients address:</Text>
+            <Text style={styles.inputText}>Patients address :</Text>
             <View style={styles.inputsview} >
               <Text
                 style={styles.inputText1}
@@ -169,7 +134,7 @@ export default class Nursing extends React.Component {
               />
             </View>
 
-            <Text style={styles.inputText}>Select Surgery theatre :</Text>
+            <Text style={styles.inputText}>Selected Surgery theatre:</Text>
             <View style={styles.inputsview} >
               <Text
                 style={styles.inputText1}
@@ -187,34 +152,7 @@ export default class Nursing extends React.Component {
               />
             </View>
 
-            <Text style={styles.inputText}>Surgery  date (D/M/Y):</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
-            <Text style={styles.inputText}>Ward doctor note:</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
-            <Text style={styles.inputText}>Anesthesiologist doctor note:</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
-
-            <Text style={styles.inputText}>Surgery  doctor note:</Text>
+            <Text style={styles.inputText}>Surgery date (D/M/Y):</Text>
             <View style={styles.inputsview} >
               <Text
                 style={styles.inputText1}
@@ -224,7 +162,7 @@ export default class Nursing extends React.Component {
             </View>
 
 
-            {/* <View style={styles.buttons}>
+            <View style={styles.buttons}>
               <Button
                 title="Submit"
                 onPress={() => Alert.alert('Left button pressed')}
@@ -239,9 +177,8 @@ export default class Nursing extends React.Component {
                 color="#32a882"
               />
             </View >
- */}
+            
           </View>
-
         </ScrollView>
       </SafeAreaView>
     );
@@ -255,7 +192,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
-  inputs: {
+  /*inputs: {
     borderBottomWidth: 1,
     borderColor: '#777',
     marginRight: 20,
@@ -263,22 +200,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
 
+  },*/
 
-  },
   inputText: {
     fontWeight: "bold",
     color: "black",
     fontSize: 17,
     marginLeft: 20,
   },
+
   inputText1: {
     fontWeight: "bold",
     color: "green",
     fontSize: 16,
-
   },
-  buttons: {
 
+  buttons: {
     alignContent: "center",
     marginLeft: 20,
     marginRight: 20,
@@ -287,41 +224,39 @@ const styles = StyleSheet.create({
   },
 
   buttonsback: {
-
     alignContent: "center",
     marginLeft: 20,
     marginRight: 20,
     height: 40,
     marginTop: 10,
     marginBottom: 50,
-
   },
+
   inputTexttopic: {
     fontWeight: "bold",
     color: "black",
     fontSize: 22,
     marginTop: 25,
-
     textAlign: "center",
   },
+
   inputTexttopic1: {
     fontWeight: "bold",
     color: "black",
     fontSize: 22,
-
-    marginBottom: 40,
+    marginBottom: 20,
     textAlign: "center",
-
-
   },
-  picker1: {
+
+  /*picker1: {
     alignContent: "center",
     marginLeft: 20,
     marginRight: 20,
     height: 40,
     marginBottom: 10,
     marginTop: 5,
-  },
+  },*/
+
   Subtopic: {
     fontWeight: "bold",
     color: "black",
@@ -329,23 +264,22 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     textDecorationLine: 'underline',
     marginBottom: 20,
-    marginTop: 20
+    marginTop: 10
   },
-  inputsview: {
 
+  inputsview: {
     borderColor: '#777',
     marginRight: 20,
     marginLeft: 20,
     marginBottom: 15,
     fontWeight: "bold",
   },
-  redio1: {
 
-
+  /*redio1: {
     borderColor: '#777',
     marginRight: 40,
     marginLeft: 40,
     marginBottom: 20,
     fontWeight: "bold",
-  },
+  },*/
 });

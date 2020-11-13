@@ -4,7 +4,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export default class Nursing extends React.Component {
+export default class Anesthesiologist_Doctor extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;

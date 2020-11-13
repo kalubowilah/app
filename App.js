@@ -10,6 +10,7 @@ import FirstPage from './page/log';
 import SecondPage from './page/singup';
 import ThirdPage from './page/foget_password.js';
 import FourthPage from './page/wo_doctor.js';
+import FifthPage from './page/nursing.js';
 //import all the screens we are going to switch 
 const App = createStackNavigator({
   //Constant which holds all the screens like index of any d
@@ -19,6 +20,7 @@ const App = createStackNavigator({
 
     Forgot: { screen: ThirdPage }, 
     addpatien: { screen: FourthPage }, 
+    nursing: { screen: FifthPage }, 
   },
  // {
    // initialRouteName: 'FirstPag',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button } from 'react-native';
+import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button,Alert } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -7,6 +7,79 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 export default class signup extends React.Component {
+
+
+
+
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+ 
+      TextInputName: '',
+      TextInputEmail: '',
+      TextInputPhoneNumber: ''
+ 
+    }
+ 
+  }
+ 
+  InsertDataToServer = () =>{
+ 
+ 
+ const { TextInputName }  = this.state ;
+ const { TextInputEmail }  = this.state ;
+ const { TextInputPhoneNumber }  = this.state ;
+ 
+ 
+ 
+ fetch('http://192.168.1.7:80/database/singup.php', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+ 
+    name: TextInputName,
+ 
+    email: TextInputEmail,
+ 
+    phone_number: TextInputPhoneNumber
+ 
+  })
+ 
+}).then((response) => response.json())
+      .then((responseJson) => {
+ 
+// Showing response message coming from server after inserting records.
+        Alert.alert(responseJson);
+ 
+      }).catch((error) => {
+        console.error(error);
+      });
+ 
+ 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   render(){
     const { navigate } = this.props.navigation;
@@ -65,7 +138,7 @@ export default class signup extends React.Component {
                                      style={styles.inputText1}
                                         placeholder="eg- Sadun Tharaka." 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={TextInputName => this.setState({TextInputName})}
                               />
                         
                  </View>
@@ -76,7 +149,7 @@ export default class signup extends React.Component {
                                         style={styles.inputText1}
                                         placeholder="XXXX" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={TextInputEmail => this.setState({TextInputEmail})}
                               />
                         
                  </View>
@@ -87,7 +160,7 @@ export default class signup extends React.Component {
                                         style={styles.inputText1}
                                         placeholder="XXXXXXXXXXV" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={TextInputPhoneNumber => this.setState({TextInputPhoneNumber})}
                               />
                         
                  </View>
@@ -142,7 +215,7 @@ export default class signup extends React.Component {
                  <View style={styles.buttons}>
                        <Button
                         title="Submit"
-                         onPress={() => Alert.alert('Left button pressed')}
+                        onPress={this.InsertDataToServer}
                          color="#32a882" S
                          
                       />

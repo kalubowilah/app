@@ -114,9 +114,9 @@ export default class wo_docter extends React.Component {
 
 
 
-                 <Text style={styles.Subtopic}>Patients information </Text> 
+                 <Text style={styles.Subtopic}>Patient information </Text> 
 
-                 <Text style={styles.inputText}>Patients name :</Text>
+                 <Text style={styles.inputText}>Patient name :</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -128,7 +128,7 @@ export default class wo_docter extends React.Component {
                         
                  </View>
 
-                 <Text style={styles.inputText}>Patients age (years) :</Text>
+                 <Text style={styles.inputText}>Patient age (years) :</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -139,7 +139,7 @@ export default class wo_docter extends React.Component {
                         
                  </View>
 
-                 <Text style={styles.inputText}>Patients address:</Text>
+                 <Text style={styles.inputText}>Patient address:</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -197,7 +197,7 @@ export default class wo_docter extends React.Component {
              </View>
 
 
-                 <Text style={styles.Subtopic}> Admisson information </Text> 
+                 <Text style={styles.Subtopic}> Surgery information </Text> 
 
                  <Text style={styles.inputText}>B.H.T.</Text>
                  <View style={styles. inputs} >
@@ -223,7 +223,7 @@ export default class wo_docter extends React.Component {
                         
                  </View>
                         
-                 <Text style={styles.inputText}>Doctor name :</Text>
+                 <Text style={styles.inputText}>Surgery Doctor name :</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -235,7 +235,7 @@ export default class wo_docter extends React.Component {
                         
                  </View>
 
-   <Text style={styles.inputText}>Select operation theatre:</Text>
+   <Text style={styles.inputText}>Select Surgery theatre:</Text>
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[ 
@@ -259,7 +259,7 @@ export default class wo_docter extends React.Component {
              </DropDownPicker>
              </View>
 
-             <Text style={styles.inputText}>Operation time (H):</Text>
+             <Text style={styles.inputText}>Surgery time (H):</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -271,8 +271,18 @@ export default class wo_docter extends React.Component {
                               />
                         
                  </View>
+                 <Text style={styles.inputText}>Surgery type:</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholderTextColor="#DCDCDC"
+                                        onChangeText={text => this.setState({password:text})}
+                                        
+                              />
+                        
+                 </View>
 
-                 <Text style={styles.inputText}>Operation date (D/M/Y):</Text>
+                 <Text style={styles.inputText}>Surgery date (D/M/Y):</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}

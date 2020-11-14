@@ -1,18 +1,65 @@
 
 import React,{Component} from 'react';
-import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,ScrollView,Picker} from 'react-native';
+import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Button,ScrollView, Alert} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class log extends React.Component {
-  state={
-    name:"",
-    password:""
+ 
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+      position:'',
+    }
+ 
   }
+ 
+  GetValueFunction = () =>{
+ 
+ const {position}  = this.state ;
+
+switch(position) {
+  case 'Ward_doctors':
+    this.props.navigation.push('Addpatien');
+    break;
+  case 'Director':
+   this.props.navigation.push('Director');
+    break;
+    case 'Anesthesiologist doctor':
+      this.props.navigation.push('Anesthesiologist_Doctor');
+      break;
+    case 'Surgery doctor':
+     this.props.navigation.push('Surgery_Doctor');
+      break;
+      case 'Ward doctors':
+        this.props.navigation.push('Select');
+        break;
+      case 'Nursing':
+       this.props.navigation.push('Nursing');
+        break;
+  default:
+    Alert.alert(password);
+}
+   //Alert.alert(position);
+    //this.props.navigation.push('Registration');
+  }
+
+
+
+
+
+
+
+
+
+
+
   render(){
     const { navigate } = this.props.navigation;
 
-    this.state = {
-      role: 'Director'
+    this.state1 = {
+      role: 'Select'
   }
 
     return (
@@ -28,10 +75,12 @@ export default class log extends React.Component {
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[ 
-                            {label: 'Director', value: 'Director',  hidden: true},
+                            {label: 'Select', value: 'Select',  hidden: true},
+                            {label: 'Director', value: 'Director'},
                             {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
+                            {label: 'Surgery doctor', value: 'Surgery doctor'},
                             {label: 'Ward doctors', value: 'Ward doctors'},
-                            {label: 'ward consultant.', value: 'ward consultant.'},
+                            {label: 'Nursing', value: 'Nursing'},
                     ]}
                        defaultValue={this.state.role}
                        containerStyle={{height: 40}}
@@ -41,9 +90,8 @@ export default class log extends React.Component {
                        justifyContent: 'flex-start'
                     }}
                           dropDownStyle={{backgroundColor: '#fafafa'}}
-                          onChangeItem={item => this.setState({
-                          country: item.value
-                    })}
+                          onChangeItem={item=> this.setState({position:item.value})}
+                         
                      >
              </DropDownPicker>
              </View>
@@ -77,7 +125,8 @@ export default class log extends React.Component {
                                                 <Button 
                                                 title="Login"
                                                 color="#32a882" 
-                                                onPress={() =>navigate('addpatien')} 
+                                             //   onPress={() =>navigate('Anesthesiologist_Doctor')} 
+                                             onPress={this.GetValueFunction}
                                                 />
                         </View>
 

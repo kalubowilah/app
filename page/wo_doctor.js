@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button,ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button, Alert } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -19,6 +19,7 @@ export default class wo_docter extends React.Component {
     this.state = {
       //default value of the date time
       date: '',
+      position:'',
     };
   
 
@@ -42,7 +43,19 @@ export default class wo_docter extends React.Component {
     });
   }
 
-  
+  GetValueFunction = () =>{
+ 
+    const {position}  = this.state ;
+   
+   if(position==""){
+     Alert.alert("Select your parmission");
+   }else{
+     Alert.alert("Thank DB develop");
+   }
+   
+    
+   //Alert.alert(position);
+     }
 
   render(){
     const { navigate } = this.props.navigation;
@@ -58,6 +71,9 @@ export default class wo_docter extends React.Component {
  //picker (operation theatri)
  this.state3 = {
   Sex: 'Male'
+}
+this.state4 = {
+  Permission: 'Ready to Surgery'
 }
     
     return (
@@ -295,9 +311,27 @@ export default class wo_docter extends React.Component {
                         
                  </View>
 
-
-
-                 <Text style={styles.inputText}>Note:</Text>
+                 <Text style={styles.inputText}>Add your Permission:</Text>
+         <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[                          
+                            {label: 'Ready to Surgery', value: 'Ready to Surgery' },
+                            {label: 'Problem to Surgery', value: 'Problem to Surgery'},
+                        
+                    ]}
+                       defaultValue={this.state.Permission}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item=> this.setState({position:item.value})}
+                     >
+             </DropDownPicker>
+             </View>
+             <Text style={styles.inputText}>Note:</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
@@ -311,7 +345,7 @@ export default class wo_docter extends React.Component {
                  <View style={styles.buttons}>
                        <Button
                         title="Submit"
-                         onPress={() => Alert.alert('Left button pressed')}
+                        onPress={this.GetValueFunction}
                          color="#32a882" 
                          
                       />
@@ -319,7 +353,7 @@ export default class wo_docter extends React.Component {
 
                    <View style={styles.buttonsback}>
                <Button 
-                       onPress={() =>navigate('Welcome')}
+                       onPress={() =>navigate('Select')}
                        title="Back"
                        color="#32a882" 
                        

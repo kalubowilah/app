@@ -1,14 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, ImageBackground, Image, ScrollView, TextField, Reinput, Button, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, ImageBackground, Image, ScrollView, TextField, Reinput, Button, ToastAndroid,  Alert } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
 export default class Director extends React.Component {
 
+
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+      position:'',
+    }
+ 
+  }
+ 
+  GetValueFunction = () =>{
+ 
+ const {position}  = this.state ;
+
+if(position==""){
+  Alert.alert("Select your parmission");
+}else{
+  Alert.alert("Thank DB develop");
+}
+
+ 
+    //this.props.navigation.push('Registration');
+  }
+
+
+
+
+
+
   render() {
     const { navigate } = this.props.navigation;
-
+    this.state1 = {
+      Permission: 'Ready to Surgery'
+  }
     return (
       <SafeAreaView>
         <ScrollView>
@@ -46,7 +78,28 @@ export default class Director extends React.Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </View>
-            
+            <Text style={styles.Subtopic}>Permission to Surgery </Text>
+            <Text style={styles.inputText}>Add your Permission:</Text>
+         <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[ 
+                           // {label: 'Select', value: 'Select',  hidden: true},
+                            {label: 'Ready to Surgery', value: 'Ready to Surgery' },
+                            {label: 'Problem to Surgery', value: 'Problem to Surgery'},
+                        
+                    ]}
+                       defaultValue={this.state.Permission}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item=> this.setState({position:item.value})}
+                     >
+             </DropDownPicker>
+             </View>
 
             <Text style={styles.Subtopic}>Patients information </Text>
 
@@ -165,7 +218,7 @@ export default class Director extends React.Component {
             <View style={styles.buttons}>
               <Button
                 title="Submit"
-                onPress={() => Alert.alert('Left button pressed')}
+                onPress={this.GetValueFunction}
                 color="#32a882"
               />
             </View>
@@ -275,11 +328,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  /*redio1: {
-    borderColor: '#777',
-    marginRight: 40,
-    marginLeft: 40,
-    marginBottom: 20,
-    fontWeight: "bold",
-  },*/
+  picker1: {
+    alignContent: "center",
+    marginLeft: 20,
+    marginRight: 20,
+    height: 40,
+    marginBottom: 10,
+    marginTop: 5,
+  },
 });

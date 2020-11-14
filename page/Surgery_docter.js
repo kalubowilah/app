@@ -1,14 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, ImageBackground, Image, ScrollView, TextField, Reinput, Button, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, ImageBackground, Image, ScrollView, TextField, Reinput, Button, ToastAndroid, Alert } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export default class Nursing extends React.Component {
+export default class  Surgery_Doctor extends React.Component {
+
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+      position:'',
+    }
+ 
+  }
+ 
+  GetValueFunction = () =>{
+ 
+ const {position}  = this.state ;
+
+if(position==""){
+  Alert.alert("Select your parmission");
+}else{
+  Alert.alert("Thank DB develop");
+}
+
+ 
+//Alert.alert(position);
+  }
+
+
+
+
+
+
+
+
+
+
 
   render() {
     const { navigate } = this.props.navigation;
-
+    this.state1 = {
+      Permission: 'Ready to Surgery'
+  }
     return (
       <SafeAreaView>
         <ScrollView>
@@ -45,6 +81,19 @@ export default class Nursing extends React.Component {
               />
             </View>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
             <Text style={styles.Subtopic}>Permission to Surgery </Text>
 
             <Text style={styles.inputText}>01. Director :</Text>
@@ -72,15 +121,44 @@ export default class Nursing extends React.Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </View>
+            <Text style={styles.inputText}>04. Add your Permission:</Text>
+         <View style={styles.picker1}> 
+            <DropDownPicker
+                       items={[                          
+                            {label: 'Ready to Surgery', value: 'Ready to Surgery' },
+                            {label: 'Problem to Surgery', value: 'Problem to Surgery'},
+                        
+                    ]}
+                       defaultValue={this.state.Permission}
+                       containerStyle={{height: 40}}
+                       style={styles.inputText1}
+                       style={{backgroundColor: '#fafafa'}}
+                       itemStyle={{
+                       justifyContent: 'flex-start'
+                    }}
+                          dropDownStyle={{backgroundColor: '#fafafa'}}
+                          onChangeItem={item=> this.setState({position:item.value})}
+                     >
+             </DropDownPicker>
+             </View>
+             <Text style={styles.inputText}>Note:</Text>
+                 <View style={styles. inputs} >
+                               <TextInput  
+                                        style={styles.inputText1}
+                                        placeholderTextColor="#DCDCDC"
+                                      //  onChangeText={text => this.setState({password:text})}
+                                      multiline={true}
+                              />
+                        
+                 </View>
 
-            <Text style={styles.inputText}>04. Surgery doctor :</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
-              />
-            </View>
+
+
+
+
+
+
+
 
 
             <Text style={styles.Subtopic}>Patients information </Text>
@@ -214,17 +292,16 @@ export default class Nursing extends React.Component {
               />
             </View>
 
-            <Text style={styles.inputText}>Surgery  doctor note:</Text>
-            <View style={styles.inputsview} >
-              <Text
-                style={styles.inputText1}
-                placeholderTextColor="#DCDCDC"
-                onChangeText={text => this.setState({ password: text })}
+         
+
+
+             <View style={styles.buttons}>
+              <Button
+                title="Submit"
+                onPress={this.GetValueFunction}
+                color="#32a882"
               />
             </View>
-
-
-         
 
             <View style={styles.buttonsback}>
               <Button
@@ -333,13 +410,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontWeight: "bold",
   },
-  redio1: {
-
-
-    borderColor: '#777',
-    marginRight: 40,
-    marginLeft: 40,
-    marginBottom: 20,
-    fontWeight: "bold",
-  },
+  picker1:{
+    alignContent:"center",
+    marginLeft:20,
+    marginRight:20,
+    height: 40,
+    marginBottom:10,
+    
+  }
 });

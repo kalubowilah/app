@@ -13,6 +13,9 @@ import FourthPage from './page/wo_doctor.js';
 import FifthPage from './page/director.js';
 import SixthPage from './page/nursing.js';
 import SeventhPage from './page/anesthesiologist_doctor.js';
+import EgithPage from './page/Surgery_docter.js';
+import Ninthpage from './page/selecter.js';
+import Tenthpage from './page/word_docter.js';
 
 
 //import all the screens we are going to switch 
@@ -23,10 +26,13 @@ const App = createStackNavigator({
     Registration : { screen: SecondPage }, 
 
     Forgot: { screen: ThirdPage }, 
-    addpatien: { screen: FourthPage }, 
+    Addpatien: { screen: FourthPage }, 
     Director: { screen: FifthPage },
     Nursing: { screen: SixthPage },
     Anesthesiologist_Doctor: { screen: SeventhPage },
+    Surgery_Doctor: { screen: EgithPage },
+    Select: { screen:  Ninthpage },
+    word_docter: { screen: Tenthpage },
 
   },
  // {

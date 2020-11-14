@@ -4,6 +4,27 @@ import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Bu
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class log extends React.Component {
+
+  GetValueFunction = () =>{
+    console.log(1)
+    return fetch('http://192.168.1.101/CSTH_PHP/show_all.php')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      
+      console.log(responseJson);
+      // let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      // this.setState({
+      //   isLoading: false,
+      //   dataSource: ds.cloneWithRows(responseJson),
+      // }, function() {
+      //   // In this block you can do something with new state.
+      // });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+   
+  }
  
   constructor(props) {
  
@@ -15,7 +36,7 @@ export default class log extends React.Component {
  
   }
  
-  GetValueFunction = () =>{
+  GetValueFunctionX = () =>{
  
  const {position}  = this.state ;
 

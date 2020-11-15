@@ -25,7 +25,7 @@ $email = $obj['email'];
 $phone_number = $obj['phone_number'];
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert log(name,pass,NIc) values ('$name','$email','$phone_number')";
+$Sql_Query = "insert into user_reg(name,password,nic) values ('$name','$email','$phone_number')";
  
 
  if(mysqli_query($con,$Sql_Query)){

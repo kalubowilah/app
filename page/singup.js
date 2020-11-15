@@ -1,111 +1,83 @@
 import React from 'react';
 import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,ScrollView,TextField,Reinput,Button,Alert } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 import DropDownPicker from 'react-native-dropdown-picker';
 
-
-
-export default class signup extends React.Component {
-
-
-
-
-  constructor(props) {
+export default class Project extends React.Component {
  
-    super(props)
+constructor() {
+ 
+    super()
  
     this.state = {
  
-      TextInputName: '',
-      TextInputEmail: '',
-      TextInputPhoneNumber: ''
+      // UserName: '',
+      // UserEmail: '',
+      // UserPassword: ''
+      UserName: '',
+      UserEmail: '',
+      UserPassword: '',
+      UserNic: '',
+      UserRegNo: '',
+      UserPosition: '',
+      UserPhone: ''
  
     }
  
   }
  
-  InsertDataToServer = () =>{
+UserRegistrationFunction = () =>{
+
+  // return console.log(this.state.UserName)
  
+  fetch('http://192.168.1.101/CSTH_PHP/register_user.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+  
+      name: this.state.UserName,
+  
+      email: this.state.UserEmail,
+  
+      password: this.state.UserPassword,
+      nic: this.state.UserNic,
+      reg_number: this.state.UserRegNo,
+      position: this.state.UserPosition,
+      phone: this.state.UserPhone
+  
+    })
+  
+  }).then((response) => response.json())
+        .then((responseJson) => {
+  
+          console.log(responseJson)
+  // Showing response message coming from server after inserting records.
+          // Alert.alert(responseJson);
+  
+        }).catch((error) => {
+          console.error(error);
+        });
  
- const { TextInputName }  = this.state ;
- const { TextInputEmail }  = this.state ;
- const { TextInputPhoneNumber }  = this.state ;
+}
  
- 
- 
- fetch('http://192.168.1.7:80/database/singup.php', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
- 
-    name: TextInputName,
- 
-    email: TextInputEmail,
- 
-    phone_number: TextInputPhoneNumber
- 
-  })
- 
-}).then((response) => response.json())
-      .then((responseJson) => {
- 
-// Showing response message coming from server after inserting records.
-        Alert.alert(responseJson);
- 
-      }).catch((error) => {
-        console.error(error);
-      });
- 
- 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  render(){
-    const { navigate } = this.props.navigation;
-    state = {
-      language: 'java',
-
-    };
-
- 
-    this.state = {
-      role: 'Director'
-  }
-
+  render() {
     return (
-      <SafeAreaView>
-      <ScrollView>
-       <View style={styles.container}>
-
-         
-       <Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
+ 
+        <SafeAreaView>
+        <ScrollView>
+<View style={styles.container}>
+ 
+<Text style={styles.inputTexttopic}>Colombo South Teaching Hospital</Text> 
        <Text style={styles.inputTexttopic1}>- Kalubowila -</Text> 
 
-       
+  
        <Text style={styles.inputText}>Select your position:</Text>
        <View style={styles.picker1}> 
-            <DropDownPicker
+       <DropDownPicker
+       
                        items={[ 
                             {label: 'Director', value: 'Director',  hidden: true},
                             {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
@@ -121,102 +93,99 @@ export default class signup extends React.Component {
                     }}
                           dropDownStyle={{backgroundColor: '#fafafa'}}
                           onChangeItem={item => this.setState({
-                          country: item.value
+                            UserPosition: item.value
                     })}
                      >
              </DropDownPicker>
              </View>
 
+        <Text style={styles.inputText}>Enter your name :</Text>
+        <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter User Name"
+          placeholderTextColor="#DCDCDC"
+          onChangeText={name => this.setState({UserName : name})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
 
+          
+          <Text style={styles.inputText}>Your registration number :</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter User Email"
+          onChangeText={regno => this.setState({UserRegNo : regno})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
 
+          <Text style={styles.inputText}>NIC number :</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter User NIC"
+          onChangeText={nic => this.setState({UserNic : nic})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
 
+          <Text style={styles.inputText}>Enter your phone No :</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter User NIC"
+          onChangeText={phone => this.setState({UserPhone : phone})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
+          
+          <Text style={styles.inputText}>Email address</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter Email"
+          onChangeText={email => this.setState({UserEmail : email})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View> 
 
+          <Text style={styles.inputText}>Email Password</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter Password"
+          onChangeText={password => this.setState({UserPassword : password})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
 
-              <Text style={styles.inputText}>Enter your name :</Text> 
-                <View style={styles. inputs} >
-                               <TextInput  
-                                     style={styles.inputText1}
-                                        placeholder="eg- Sadun Tharaka." 
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={TextInputName => this.setState({TextInputName})}
-                              />
-                        
-                 </View>
-
-                 <Text style={styles.inputText}>Your registration number :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="XXXX" 
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={TextInputEmail => this.setState({TextInputEmail})}
-                              />
-                        
-                 </View>
-
-                 <Text style={styles.inputText}>NIC number :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="XXXXXXXXXXV" 
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={TextInputPhoneNumber => this.setState({TextInputPhoneNumber})}
-                              />
-                        
-                 </View>
-
-                 <Text style={styles.inputText}>Enter your phone No: :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="eg- +94*********" 
-                                        keyboardType = 'numeric'
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
-
-                 <Text style={styles.inputText}>Email address: :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="" 
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
-
-                 <Text style={styles.inputText}>Password :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="Must have at least 8 chatacters." 
-                                        secureTextEntry={true}
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
-        
-                 <Text style={styles.inputText}>Re-enter password :</Text>
-                 <View style={styles. inputs} >
-                               <TextInput  
-                                        style={styles.inputText1}
-                                        placeholder="" 
-                                        secureTextEntry={true}
-                                        placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
-                              />
-                        
-                 </View>
-              
-                 <View style={styles.buttons}>
+          <Text style={styles.inputText}>Confirm Password</Text>
+          <View style={styles. inputs} >
+        <TextInput
+          placeholder="Enter Password Again"
+        //   onChangeText={password => this.setState({UserPassword : password})}
+          underlineColorAndroid='transparent'
+          style={styles.inputText1}
+          />
+          </View>
+ 
+        {/* <TextInput
+          placeholder="Enter User Password"
+          onChangeText={password => this.setState({UserPassword : password})}
+          underlineColorAndroid='transparent'
+          style={styles.TextInputStyleClass}
+          secureTextEntry={true}
+          /> */}
+ 
+        {/* <Button title="Click Here To Register" onPress={this.UserRegistrationFunction} color="#2196F3" /> */}
+      
+        <View style={styles.buttons}>
                        <Button
                         title="Submit"
-                        onPress={this.InsertDataToServer}
-                         color="#32a882" S
+                        onPress={this.UserRegistrationFunction}
+                         color="#32a882" 
                          
                       />
                    </View>
@@ -228,87 +197,89 @@ export default class signup extends React.Component {
                        color="#32a882" 
                        
               />
-              </View >
-       </View>
-
-       </ScrollView>              
-       </SafeAreaView>
+              </View>
+  
+ 
+</View>
+        </ScrollView>
+</SafeAreaView>
+            
     );
   }
 }
-
+ 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    
+    container: {
+      flex: 1,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      
+    },
+    inputs:{
+      borderBottomWidth: 1,
+      borderColor:'#777',
+     marginRight:20,
+      marginLeft:20,
+      marginBottom:20,
+      fontWeight: "bold",
+      
+  
+    },
+    inputText:{
+      fontWeight: "bold",
+      color:"black",
+      fontSize: 17,
+      marginLeft:20,
+    },
+    inputText1:{
+      fontWeight: "bold",
+      color:"green",
+      fontSize: 16,
+      
+    },
+  buttons:{
+  
+    alignContent:"center",
+     marginLeft:20,
+     marginRight:20,
+     height: 40,
+     marginTop:40,
   },
-  inputs:{
-    borderBottomWidth: 1,
-    borderColor:'#777',
-   marginRight:20,
-    marginLeft:20,
-    marginBottom:20,
-    fontWeight: "bold",
-    
-
-  },
-  inputText:{
-    fontWeight: "bold",
-    color:"black",
-    fontSize: 17,
-    marginLeft:20,
-  },
-  inputText1:{
-    fontWeight: "bold",
-    color:"green",
-    fontSize: 16,
-    
-  },
-buttons:{
-
-  alignContent:"center",
+  
+  buttonsback:{
+  
+    alignContent:"center",
    marginLeft:20,
    marginRight:20,
    height: 40,
-   marginTop:40,
-},
-
-buttonsback:{
-
-  alignContent:"center",
- marginLeft:20,
- marginRight:20,
- height: 40,
- marginTop:10,
- marginBottom:50,
- 
-},
-inputTexttopic:{
-  fontWeight: "bold",
-  color:"black",
-  fontSize: 22,
-  marginTop:25,
+   marginTop:10,
+   marginBottom:50,
+   
+  },
+  inputTexttopic:{
+    fontWeight: "bold",
+    color:"black",
+    fontSize: 22,
+    marginTop:25,
+    
+   textAlign:"center",
+  },
+  inputTexttopic1:{
+    fontWeight: "bold",
+    color:"black",
+    fontSize: 22,
+   
+    marginBottom:40,
+   textAlign:"center",
   
- textAlign:"center",
-},
-inputTexttopic1:{
-  fontWeight: "bold",
-  color:"black",
-  fontSize: 22,
- 
-  marginBottom:40,
- textAlign:"center",
-
-
-},
-picker1:{
-  alignContent:"center",
-  marginLeft:20,
-  marginRight:20,
-  height: 40,
-  marginBottom:10,
-  marginTop:5,
-}
-});
+  
+  },
+  picker1:{
+    alignContent:"center",
+    marginLeft:20,
+    marginRight:20,
+    height: 40,
+    marginBottom:10,
+    marginTop:5,
+  }
+  });

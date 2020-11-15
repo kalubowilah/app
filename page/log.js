@@ -5,7 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class log extends React.Component {
 
-  GetValueFunction = () =>{
+  GetValueFunctionX = () =>{
     console.log(1)
     return fetch('http://192.168.1.101/CSTH_PHP/show_all.php')
     .then((response) => response.json())
@@ -36,7 +36,7 @@ export default class log extends React.Component {
  
   }
  
-  GetValueFunctionX = () =>{
+  GetValueFunction = () =>{
  
  const {position}  = this.state ;
 

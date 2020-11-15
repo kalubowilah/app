@@ -64,6 +64,16 @@ UserRegistrationFunction = () =>{
 }
  
   render() {
+    const { navigate } = this.props.navigation;
+    state = {
+      language: 'java',
+
+    };
+
+ 
+//     this.state = {
+//       role: 'Director'
+//   }
     return (
  
         <SafeAreaView>
@@ -213,7 +223,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'white',
       justifyContent: 'center',
-      
+     
     },
     inputs:{
       borderBottomWidth: 1,

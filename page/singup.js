@@ -3,7 +3,8 @@ import { StyleSheet, Text, View ,TextInput,SafeAreaView, ImageBackground,Image,S
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export default class Project extends React.Component {
+
+export default class Project extends React.Component  {
  
 constructor() {
  
@@ -20,15 +21,64 @@ constructor() {
       UserNic: '',
       UserRegNo: '',
       UserPosition: '',
-      UserPhone: ''
+      UserPhone: '',
+      ConfirmPassword: ''
  
     }
  
   }
+
+  // check_validation() {
+  //   this.validate({
+  //     // name: {minlength:3, maxlength:7, required: true},
+  //     // email: {email: true},
+  //     // number: {numbers: true},
+  //     // date: {date: 'YYYY-MM-DD'},
+  //     ConfirmPassword : {equalPassword : this.state.UserPassword}
+  //   });
+
+  //   return console.log(1)
+  // }
  
 UserRegistrationFunction = () =>{
 
-  // return console.log(this.state.UserName)
+ 
+
+  // return console.log(this.state.UserPassword.length)
+  if(
+    this.state.UserName === '' ||
+    this.state.UserNic === '' ||
+    this.state.UserEmail === '' ||
+    this.state.UserRegNo === '' ||
+    this.state.UserPhone === '' ||
+    this.state.UserPosition=== ''  
+  )  {
+    return Alert.alert('Please fill all fields')
+  }
+
+  if(this.state.UserPassword.length < 6){
+    return Alert.alert("Password should be 6 characters minimum")
+  }
+
+
+  var pattern = /^([0-9]{9}[X|V]|[0-9]{12})$/gm
+  if(!this.state.UserNic.match(pattern)){
+    return Alert.alert("Invalid NIC")
+  }
+  let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/gm;
+  if(!this.state.UserEmail.match(emailPattern)){
+    return Alert.alert("Invalid Email")
+  }
+
+  if(this.state.UserPhone.length !== 10){
+    return Alert.alert("Invalid Phone Number")
+  }
+
+  if(this.state.ConfirmPassword !== this.state.UserPassword){
+    return Alert.alert('Passwords don\'t match')
+  }
+
+ 
  
   fetch('http://192.168.1.101/CSTH_PHP/register_user.php', {
     method: 'POST',
@@ -54,6 +104,7 @@ UserRegistrationFunction = () =>{
         .then((responseJson) => {
   
           console.log(responseJson)
+          return Alert.alert(responseJson.message)
   // Showing response message coming from server after inserting records.
           // Alert.alert(responseJson);
   
@@ -142,9 +193,10 @@ UserRegistrationFunction = () =>{
           </View>
 
           <Text style={styles.inputText}>Enter your phone No :</Text>
-          <View style={styles. inputs} >
+          <View style={styles. inputs}>
         <TextInput
-          placeholder="Enter User NIC"
+          keyboardType="numeric"
+          placeholder="Enter phone Number"
           onChangeText={phone => this.setState({UserPhone : phone})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -161,9 +213,10 @@ UserRegistrationFunction = () =>{
           />
           </View> 
 
-          <Text style={styles.inputText}>Email Password</Text>
+          <Text style={styles.inputText}> Password</Text>
           <View style={styles. inputs} >
         <TextInput
+          // ref="UserPassword"
           placeholder="Enter Password"
           onChangeText={password => this.setState({UserPassword : password})}
           underlineColorAndroid='transparent'
@@ -174,12 +227,14 @@ UserRegistrationFunction = () =>{
           <Text style={styles.inputText}>Confirm Password</Text>
           <View style={styles. inputs} >
         <TextInput
+          // ref="ConfirmPassword"
+          onChangeText={password => this.setState({ConfirmPassword : password})}
           placeholder="Enter Password Again"
-        //   onChangeText={password => this.setState({UserPassword : password})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
           />
           </View>
+          {/* {this.isFieldInError('ConfirmPassword') && this.getErrorsInField('ConfirmPassword').map(errorMessage => <View><Text>{errorMessage}</Text></View>) } */}
  
         {/* <TextInput
           placeholder="Enter User Password"

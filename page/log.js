@@ -6,7 +6,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 export default class log extends React.Component {
 
   GetValueFunctionX = () =>{
-    console.log(1)
+    return console.log(1)
     return fetch('http://192.168.1.101/CSTH_PHP/show_all.php')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -32,39 +32,68 @@ export default class log extends React.Component {
  
     this.state = {
       position:'',
+      email: '',
+      password:''
     }
  
   }
  
   GetValueFunction = () =>{
+    // return console.log(this.state.email, this.state.password, this.state.position)
  
- const {position}  = this.state ;
+//  const {position}  = this.state.position ;
+//  return console.log(position)
 
-switch(position) {
+fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: this.state.email,
+      password: this.state.password,
+      position: this.state.position,
+    })
+  
+  }).then((response) => response.json())
+        .then((responseJson) => {
+  
+          console.log(responseJson)
+
+          // return console.log(positionJSON)
+
+          switch(responseJson.position) {
   case 'Ward_doctors':
     this.props.navigation.push('Addpatien');
     break;
   case 'Director':
-   this.props.navigation.push('Director');
+    this.props.navigation.push('Director');
     break;
     case 'Anesthesiologist doctor':
       this.props.navigation.push('Anesthesiologist_Doctor');
       break;
-    case 'Surgery doctor':
+      case 'Surgery doctor':
      this.props.navigation.push('Surgery_Doctor');
       break;
       case 'Ward doctors':
         this.props.navigation.push('Select');
         break;
-      case 'Nursing':
-       this.props.navigation.push('Nursing');
-        break;
-  default:
-    Alert.alert(password);
-}
-   //Alert.alert(position);
-    //this.props.navigation.push('Registration');
-  }
+        case 'Nursing':
+          this.props.navigation.push('Nursing');
+          break;
+          default:
+            Alert.alert("Invalid Credentials");
+          }
+          //Alert.alert(position);
+          //this.props.navigation.push('Registration');
+
+  
+        }).catch((error) => {
+           console.error(error, 'error');
+        })
+
+    }
 
 
 
@@ -79,9 +108,6 @@ switch(position) {
   render(){
     const { navigate } = this.props.navigation;
 
-    this.state1 = {
-      role: 'Select'
-  }
 
     return (
       <ScrollView>  
@@ -119,13 +145,13 @@ switch(position) {
 
 
 
-                       <Text style={styles.inputText}>Enter user name :</Text>
+                       <Text style={styles.inputText}>Enter your email :</Text>
                           <View style={styles. inputs} >
                                <TextInput  
                                      style={styles.inputText1}
-                                        placeholder="User name" 
+                                        placeholder="Email" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={emailInput => this.setState({email: emailInput})}
                               />
                         
                           </View>
@@ -137,7 +163,7 @@ switch(position) {
                                         placeholder="password" 
                                         secureTextEntry={true}
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={passwordInput => this.setState({password: passwordInput})}
                               />
                          </View>
 

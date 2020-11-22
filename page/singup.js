@@ -23,6 +23,7 @@ constructor() {
       UserPosition: '',
       UserPhone: '',
       ConfirmPassword: ''
+
  
     }
  
@@ -89,9 +90,7 @@ UserRegistrationFunction = () =>{
     body: JSON.stringify({
   
       name: this.state.UserName,
-  
       email: this.state.UserEmail,
-  
       password: this.state.UserPassword,
       nic: this.state.UserNic,
       reg_number: this.state.UserRegNo,
@@ -164,7 +163,7 @@ UserRegistrationFunction = () =>{
         <Text style={styles.inputText}>Enter your name :</Text>
         <View style={styles. inputs} >
         <TextInput
-          placeholder="Enter User Name"
+          placeholder="Enter Your Name"
           placeholderTextColor="#DCDCDC"
           onChangeText={name => this.setState({UserName : name})}
           underlineColorAndroid='transparent'
@@ -176,8 +175,7 @@ UserRegistrationFunction = () =>{
           <Text style={styles.inputText}>Your registration number :</Text>
           <View style={styles. inputs} >
         <TextInput
-          placeholder="Enter 
-          Email"
+          placeholder="Enter Your Registration Number"
           onChangeText={regno => this.setState({UserRegNo : regno})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -187,7 +185,7 @@ UserRegistrationFunction = () =>{
           <Text style={styles.inputText}>NIC number :</Text>
           <View style={styles. inputs} >
         <TextInput
-          placeholder="Enter User NIC"
+          placeholder="Enter Your NIC"
           onChangeText={nic => this.setState({UserNic : nic})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -198,7 +196,7 @@ UserRegistrationFunction = () =>{
           <View style={styles. inputs}>
         <TextInput
           keyboardType="numeric"
-          placeholder="Enter phone Number"
+          placeholder="Enter Your phone Number"
           onChangeText={phone => this.setState({UserPhone : phone})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -208,7 +206,7 @@ UserRegistrationFunction = () =>{
           <Text style={styles.inputText}>Email address</Text>
           <View style={styles. inputs} >
         <TextInput
-          placeholder="Enter Email"
+          placeholder="Enter Your Email"
           onChangeText={email => this.setState({UserEmail : email})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -219,7 +217,7 @@ UserRegistrationFunction = () =>{
           <View style={styles. inputs} >
         <TextInput
           // ref="UserPassword"
-          placeholder="Enter Password"
+          placeholder="Enter Your Password"
           onChangeText={password => this.setState({UserPassword : password})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}
@@ -231,7 +229,7 @@ UserRegistrationFunction = () =>{
         <TextInput
           // ref="ConfirmPassword"
           onChangeText={password => this.setState({ConfirmPassword : password})}
-          placeholder="Enter Password Again"
+          placeholder="Enter Your Password Again"
           underlineColorAndroid='transparent'
           style={styles.inputText1}
           />

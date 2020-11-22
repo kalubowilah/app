@@ -38,5 +38,6 @@ const App = createStackNavigator({
  // {
    // initialRouteName: 'FirstPag',
  // }
+
 );
 export default createAppContainer(App);

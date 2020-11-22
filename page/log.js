@@ -33,7 +33,8 @@ export default class log extends React.Component {
     this.state = {
       position:'',
       email: '',
-      password:''
+      password:'',
+      user_id: '',
     }
  
   }
@@ -59,7 +60,8 @@ fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
   }).then((response) => response.json())
         .then((responseJson) => {
   
-          console.log(responseJson)
+           console.log(responseJson.user_id)
+           this.setState({user_id : responseJson.user_id})
 
           // return console.log(positionJSON)
 
@@ -70,16 +72,16 @@ fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
   case 'Director':
     this.props.navigation.push('Director');
     break;
-    case 'Anesthesiologist doctor':
+    case 'Anesthesiologist Doctor':
       this.props.navigation.push('Anesthesiologist_Doctor');
       break;
-      case 'Surgery doctor':
+      case 'Surgery Doctor':
      this.props.navigation.push('Surgery_Doctor');
       break;
-      case 'Ward doctors':
+      case 'Medical Officer':
         this.props.navigation.push('Select');
         break;
-        case 'Nursing':
+        case 'Nursing Staff':
           this.props.navigation.push('Nursing');
           break;
           default:
@@ -122,12 +124,12 @@ fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[ 
-                            {label: 'Select', value: 'Select',  hidden: true},
+                            // {label: 'Select', value: 'Select',  hidden: true},
                             {label: 'Director', value: 'Director'},
-                            {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
-                            {label: 'Surgery doctor', value: 'Surgery doctor'},
-                            {label: 'Ward doctors', value: 'Ward doctors'},
-                            {label: 'Nursing', value: 'Nursing'},
+                            {label: 'Medical Officer', value: 'Medical Officer' },
+                            {label: 'Anesthesiologist Doctor', value: 'Anesthesiologist Doctor'},
+                            {label: 'surgery Doctor', value: 'surgery Doctor'},
+                            {label: 'Nursing Staff', value: 'Nursing Staff'},
                     ]}
                        defaultValue={this.state.role}
                        containerStyle={{height: 40}}
@@ -192,9 +194,9 @@ fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
                        color="#32a882" 
                        
               />
-              </View >
+              </View>
              
-      </View >
+      </View>
    </ScrollView>  
     );
   }

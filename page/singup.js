@@ -141,9 +141,10 @@ UserRegistrationFunction = () =>{
        
                        items={[ 
                             {label: 'Director', value: 'Director',  hidden: true},
-                            {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
-                            {label: 'Ward doctors', value: 'Ward doctors'},
-                            {label: 'ward consultant.', value: 'ward consultant.'},
+                            {label: 'Medical Officer', value: 'Medical Officer'},
+                            {label: 'Anesthesiologist Doctor', value: 'Anesthesiologist Doctor' },
+                            {label: 'Surgery Doctor', value: 'Surgery Doctor'},
+                            {label: 'Nursing Staff', value: 'Nursing Staff'},
                     ]}
                        defaultValue={this.state.role}
                        containerStyle={{height: 40}}
@@ -175,7 +176,8 @@ UserRegistrationFunction = () =>{
           <Text style={styles.inputText}>Your registration number :</Text>
           <View style={styles. inputs} >
         <TextInput
-          placeholder="Enter User Email"
+          placeholder="Enter 
+          Email"
           onChangeText={regno => this.setState({UserRegNo : regno})}
           underlineColorAndroid='transparent'
           style={styles.inputText1}

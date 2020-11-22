@@ -22,15 +22,6 @@ Alert.alert("DB develop");
   }
 
 
-
-
-
-
-
-
-
-
-
   render() {
     const { navigate } = this.props.navigation;
     this.state1 = {
@@ -71,18 +62,6 @@ Alert.alert("DB develop");
                 onChangeText={text => this.setState({ password: text })}
               />
             </View>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             <Text style={styles.Subtopic}>Permission to Surgery </Text>

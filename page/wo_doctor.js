@@ -14,12 +14,22 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class wo_docter extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      //default value of the date time
-      date: '',
-      position:'',
+      PatientName: '',
+      PatientAge: '',
+      PatientAddress: '',
+      PatientSex: '',
+      PatientAllergies: '',
+      PatientBht: '',
+      PatientWard : '',
+      PatientDoctor : '',
+      PatientTheater : '',
+      PatientTime : '',
+      PatientType : '',
+      PatientDate : '',
+      PatientNote : ''
     };
   
 
@@ -43,19 +53,76 @@ export default class wo_docter extends React.Component {
     });
   }
 
-  GetValueFunction = () =>{
+  PatientRegistrationFunction = () =>{
+
  
-    const {position}  = this.state ;
+
+    // return console.log(1)
+
+    if(
+      this.state.PatientName === '' 
+    )  {
+      return Alert.alert('Please fill Patient Name')
+    }
+  
+    if(
+      this.state.PatientAllergies === ''
+      ){
+      return Alert.alert('Fill the allergies of the patient')
+    }
+  
+    if(
+      this.state.PatientBht=== ''  ||
+      this.state.PatientWard=== ''  ||
+      this.state.PatientDoctor=== ''  ||
+      this.state.PatientTheater=== ''  ||
+      this.state.PatientTime=== ''  ||
+      this.state.PatientType=== ''  ||
+      this.state.PatientDate=== ''  ||
+      this.state.PatientNote=== ''
+    )  {
+      return Alert.alert('Please fill all surgery information')
+    }
+
    
-   if(position==""){
-     Alert.alert("Select your parmission");
-   }else{
-     Alert.alert("Thank DB develop");
-   }
    
+    fetch('http://192.168.1.101/CSTH_PHP/register_patient.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
     
-   //Alert.alert(position);
-     }
+        name: this.state.PatientName,
+        age: this.state.PatientAge,
+        address: this.state.PatientAddress,
+        sex: this.state.PatientSex,
+        allergies: this.state.PatientAllergies,
+        bht: this.state.PatientBht,
+        date: this.state.PatientDate,
+        doctor: this.state.PatientDoctor,
+        theatre: this.state.PatientTheater,
+        time: this.state.PatientTime,
+        type: this.state.PatientType,
+        ward: this.state.PatientWard,
+        note: this.state.PatientNote
+    
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+            console.log(responseJson)
+            return Alert.alert(responseJson.message)
+    // Showing response message coming from server after inserting records.
+            // Alert.alert(responseJson);
+    
+          }).catch((error) => {
+            console.error(error);
+          });
+   
+  }
 
   render(){
     const { navigate } = this.props.navigation;
@@ -75,6 +142,7 @@ export default class wo_docter extends React.Component {
 this.state4 = {
   Permission: 'Ready to Surgery'
 }
+
     
     return (
       <SafeAreaView>
@@ -99,11 +167,12 @@ this.state4 = {
                                         placeholder="Name" 
                                         placeholderTextColor="#DCDCDC"
                                         onChangeText={text => this.setState({password:text})}
-                              />
+                              > {this.props.user_id} </Text>
                         
                  </View>
 
-                 <Text style={styles.inputText}>Date :</Text>
+                  
+                 {/* <Text style={styles.inputText}>Date :</Text>
                  <View style={styles. inputsview} >
                                <Text 
                                         style={styles.inputText1}
@@ -111,13 +180,13 @@ this.state4 = {
                                         onChangeText={text => this.setState({password:text})}
                               >{this.state.date}</Text>
                         
-                 </View>
+                 </View> */}
 
 
 
                  
 
-                 <Text style={styles.inputText}>Time</Text>
+                 {/* <Text style={styles.inputText}>Time</Text>
                  <View style={styles. inputsview} >
                                <Text 
                                         style={styles.inputText1}
@@ -126,7 +195,7 @@ this.state4 = {
                                         onChangeText={text => this.setState({password:text})}
                               >{this.state.time}</Text>
                         
-                 </View>
+                 </View> */}
 
 
 
@@ -136,10 +205,10 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="sadun" 
+                                        placeholder="Enter Patient Name" 
                                        // keyboardType = 'numeric'
                                         placeholderTextColor="#DCDCDC"
-                                     //   onChangeText={text => this.setState({password:text})}
+                                       onChangeText={name => this.setState({PatientName:name})}
                               />
                         
                  </View>
@@ -148,9 +217,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="18" 
+                                        placeholder="Enter Patient Age" 
                                         placeholderTextColor="#DCDCDC"
-                                      //  onChangeText={text => this.setState({password:text})}
+                                       onChangeText={age => this.setState({PatientAge:age})}
                               />
                         
                  </View>
@@ -159,8 +228,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
+                                        placeholder="Enter Patient Address" 
                                         placeholderTextColor="#DCDCDC"
-                                      //  onChangeText={text => this.setState({password:text})}
+                                       onChangeText={address => this.setState({PatientAddress:address})}
                                       multiline={true}
                               />
                         
@@ -183,7 +253,7 @@ this.state4 = {
                     }}
                           dropDownStyle={{backgroundColor: '#fafafa'}}
                           onChangeItem={item => this.setState({
-                          country: item.value
+                          PatientSex: item.value
                     })}
                      >
              </DropDownPicker>
@@ -206,7 +276,7 @@ this.state4 = {
                     }}
                           dropDownStyle={{backgroundColor: '#fafafa'}}
                           onChangeItem={item => this.setState({
-                          country: item.value
+                          PatientAllergies: item.value
                     })}
                      >
              </DropDownPicker>
@@ -219,10 +289,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="" 
-                                       
+                                        placeholder="Enter B.H.T" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={bth => this.setState({PatientBht:bth})}
                               />
                         
                  </View>
@@ -231,10 +300,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="Eg - 19/20 " 
-                                       
+                                        placeholder="Enter Ward Number" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={ward => this.setState({PatientWard:ward})}
                               />
                         
                  </View>
@@ -243,10 +311,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="Sadun Tharaka" 
-                                       
+                                        placeholder="Enter Surgery Doctor Name" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={doctor => this.setState({PatientDoctor:doctor})}
                               />
                         
                  </View>
@@ -255,10 +322,11 @@ this.state4 = {
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[ 
-                            {label: 'Theatre', value: 'Theatre',  hidden: true},
-                            {label: 'Anesthesiologist doctor', value: 'ot1' },
-                            {label: 'Ward doctors', value: 'ot2'},
-                            {label: 'ward consultant.', value: 'ward consultant.'},
+                            {label: 'Main Operation Theatre', value: 'Main',  hidden: true},
+                            {label: 'Operation Theatre A', value: 'A' },
+                            {label: 'Operation Theatre B', value: 'B'},
+                            {label: 'Operation Theatre C', value: 'C'},
+                            {label: 'Operation Theatre - Accident Service', value: 'Accident'},
                     ]}
                        defaultValue={this.state.opt}
                        containerStyle={{height: 40}}
@@ -269,7 +337,7 @@ this.state4 = {
                     }}
                           dropDownStyle={{backgroundColor: '#fafafa'}}
                           onChangeItem={item => this.setState({
-                          country: item.value
+                          PatientTheater: item.value
                     })}
                      >
              </DropDownPicker>
@@ -279,10 +347,10 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="eg - 15:30" 
+                                        placeholder="Enter Surgery Time" 
                                        
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={text => this.setState({PatientTime:text})}
                                         
                               />
                         
@@ -291,8 +359,9 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
+                                        placeholder="Enter Surgery Type"
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={text => this.setState({PatientType:text})}
                                         
                               />
                         
@@ -302,16 +371,16 @@ this.state4 = {
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
-                                        placeholder="eg - 03/10/2020" 
-                                       
+                                        placeholder="Enter Surgery Date" 
+                                        // keyboardType="decimal-pad"
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={text => this.setState({PatientDate:text})}
                                         
                               />
                         
                  </View>
 
-                 <Text style={styles.inputText}>Add your Permission:</Text>
+                 {/* <Text style={styles.inputText}>Add your Permission:</Text>
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[                          
@@ -330,13 +399,15 @@ this.state4 = {
                           onChangeItem={item=> this.setState({position:item.value})}
                      >
              </DropDownPicker>
-             </View>
+             </View> */}
+
              <Text style={styles.inputText}>Note:</Text>
                  <View style={styles. inputs} >
                                <TextInput  
                                         style={styles.inputText1}
+                                        placeholder="Enter Your Note About This Patient"
                                         placeholderTextColor="#DCDCDC"
-                                      //  onChangeText={text => this.setState({password:text})}
+                                       onChangeText={text => this.setState({PatientNote:text})}
                                       multiline={true}
                               />
                         
@@ -345,7 +416,7 @@ this.state4 = {
                  <View style={styles.buttons}>
                        <Button
                         title="Submit"
-                        onPress={this.GetValueFunction}
+                        onPress={this.PatientRegistrationFunction}
                          color="#32a882" 
                          
                       />
@@ -358,7 +429,7 @@ this.state4 = {
                        color="#32a882" 
                        
               />
-              </View >
+              </View>
        </View>
 
        </ScrollView>              

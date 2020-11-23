@@ -4,6 +4,27 @@ import { StyleSheet, Text, View ,TextInput,TouchableOpacity, ImageBackground, Bu
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class log extends React.Component {
+
+  GetValueFunctionX = () =>{
+    return console.log(1)
+    return fetch('http://192.168.1.101/CSTH_PHP/show_all.php')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      
+      console.log(responseJson);
+      // let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      // this.setState({
+      //   isLoading: false,
+      //   dataSource: ds.cloneWithRows(responseJson),
+      // }, function() {
+      //   // In this block you can do something with new state.
+      // });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+   
+  }
  
   constructor(props) {
  
@@ -11,39 +32,70 @@ export default class log extends React.Component {
  
     this.state = {
       position:'',
+      email: '',
+      password:'',
+      user_id: '',
     }
  
   }
  
   GetValueFunction = () =>{
+    // return console.log(this.state.email, this.state.password, this.state.position)
  
- const {position}  = this.state ;
+//  const {position}  = this.state.position ;
+//  return console.log(position)
 
-switch(position) {
+fetch('http://192.168.1.101/CSTH_PHP/log_user.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: this.state.email,
+      password: this.state.password,
+      position: this.state.position,
+    })
+  
+  }).then((response) => response.json())
+        .then((responseJson) => {
+  
+           console.log(responseJson.user_id)
+           this.setState({user_id : responseJson.user_id})
+
+          // return console.log(positionJSON)
+
+          switch(responseJson.position) {
   case 'Ward_doctors':
     this.props.navigation.push('Addpatien');
     break;
   case 'Director':
-   this.props.navigation.push('Director');
+    this.props.navigation.push('Director');
     break;
-    case 'Anesthesiologist doctor':
+    case 'Anesthesiologist Doctor':
       this.props.navigation.push('Anesthesiologist_Doctor');
       break;
-    case 'Surgery doctor':
+      case 'Surgery Doctor':
      this.props.navigation.push('Surgery_Doctor');
       break;
-      case 'Ward doctors':
+      case 'Medical Officer':
         this.props.navigation.push('Select');
         break;
-      case 'Nursing':
-       this.props.navigation.push('Nursing');
-        break;
-  default:
-    Alert.alert(password);
-}
-   //Alert.alert(position);
-    //this.props.navigation.push('Registration');
-  }
+        case 'Nursing Staff':
+          this.props.navigation.push('Nursing');
+          break;
+          default:
+            Alert.alert("Invalid Credentials");
+          }
+          //Alert.alert(position);
+          //this.props.navigation.push('Registration');
+
+  
+        }).catch((error) => {
+           console.error(error, 'error');
+        })
+
+    }
 
 
 
@@ -58,9 +110,6 @@ switch(position) {
   render(){
     const { navigate } = this.props.navigation;
 
-    this.state1 = {
-      role: 'Select'
-  }
 
     return (
       <ScrollView>  
@@ -75,12 +124,12 @@ switch(position) {
          <View style={styles.picker1}> 
             <DropDownPicker
                        items={[ 
-                            {label: 'Select', value: 'Select',  hidden: true},
+                            // {label: 'Select', value: 'Select',  hidden: true},
                             {label: 'Director', value: 'Director'},
-                            {label: 'Anesthesiologist doctor', value: 'Anesthesiologist doctor' },
-                            {label: 'Surgery doctor', value: 'Surgery doctor'},
-                            {label: 'Ward doctors', value: 'Ward doctors'},
-                            {label: 'Nursing', value: 'Nursing'},
+                            {label: 'Medical Officer', value: 'Medical Officer' },
+                            {label: 'Anesthesiologist Doctor', value: 'Anesthesiologist Doctor'},
+                            {label: 'surgery Doctor', value: 'surgery Doctor'},
+                            {label: 'Nursing Staff', value: 'Nursing Staff'},
                     ]}
                        defaultValue={this.state.role}
                        containerStyle={{height: 40}}
@@ -98,13 +147,13 @@ switch(position) {
 
 
 
-                       <Text style={styles.inputText}>Enter user name :</Text>
+                       <Text style={styles.inputText}>Enter your email :</Text>
                           <View style={styles. inputs} >
                                <TextInput  
                                      style={styles.inputText1}
-                                        placeholder="User name" 
+                                        placeholder="Email" 
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={emailInput => this.setState({email: emailInput})}
                               />
                         
                           </View>
@@ -116,7 +165,7 @@ switch(position) {
                                         placeholder="password" 
                                         secureTextEntry={true}
                                         placeholderTextColor="#DCDCDC"
-                                        onChangeText={text => this.setState({password:text})}
+                                        onChangeText={passwordInput => this.setState({password: passwordInput})}
                               />
                          </View>
 
@@ -145,9 +194,9 @@ switch(position) {
                        color="#32a882" 
                        
               />
-              </View >
+              </View>
              
-      </View >
+      </View>
    </ScrollView>  
     );
   }

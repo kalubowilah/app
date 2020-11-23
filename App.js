@@ -8,7 +8,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 
 import FirstPage from './page/log';
 import SecondPage from './page/singup';
-import ThirdPage from './page/foget_password.js';
+import ThirdPage from './page/foget_password';
 import FourthPage from './page/wo_doctor.js';
 import FifthPage from './page/director.js';
 import SixthPage from './page/nursing.js';
@@ -38,5 +38,6 @@ const App = createStackNavigator({
  // {
    // initialRouteName: 'FirstPag',
  // }
+
 );
 export default createAppContainer(App);

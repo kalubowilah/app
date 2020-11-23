@@ -18,6 +18,37 @@ export default class Director extends React.Component {
   }
  
   GetValueFunction = () =>{
+
+    fetch('http://192.168.1.101/CSTH_PHP/director.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: this.state.name,
+        age: this.state.age,
+        address: this.state.address,
+        sex: this.state.sex,
+        allergies: this.state.allergies,
+        bht: this.state.bht,
+        date: this.state.date,
+        doctor: this.state.doctor,
+        theatre: this.state.theater,
+        time: this.state.time,
+        type: this.state.type,
+        ward: this.state.ward
+    
+    })
+  
+  }).then((response) => response.json())
+        .then((responseJson) => {
+  
+           console.log(responseJson.id)
+           this.setState({id : responseJson.id})
+        })
+        
+
  
  const {position}  = this.state ;
 
@@ -30,7 +61,7 @@ if(position==""){
  
     //this.props.navigation.push('Registration');
   }
-
+  
 
 
 
